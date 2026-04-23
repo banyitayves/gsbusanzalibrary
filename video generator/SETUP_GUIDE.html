@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Setup Guide - AI Video Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .setup-section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid #6366f1;
+        }
+
+        .setup-section h2 {
+            color: #6366f1;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .setup-section h3 {
+            color: #333;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .steps {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .steps li {
+            counter-increment: step-counter;
+            margin-bottom: 1.5rem;
+            padding-left: 2.5rem;
+            position: relative;
+        }
+
+        .steps li:before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #6366f1;
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        code {
+            background: #f0f0f0;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        .highlight-box {
+            background: #e8f5e9;
+            border-left: 4px solid #10b981;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .error-box {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        button {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background 0.3s;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background: #4f46e5;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .comparison-table th {
+            background: #f5f5f5;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .comparison-table tr:hover {
+            background: #f9f9f9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🎬 API Setup Guide</h1>
+            <p>Get your D-ID and Tavus API keys configured in 5 minutes</p>
+        </header>
+
+        <!-- D-ID Setup -->
+        <div class="setup-section">
+            <h2>🎭 D-ID Setup</h2>
+            <p>D-ID provides realistic AI avatars that can deliver your message with natural animations.</p>
+
+            <h3>Getting Your D-ID API Key</h3>
+            <ol class="steps">
+                <li>
+                    Visit <a href="https://www.d-id.com" target="_blank">D-ID Platform</a>
+                </li>
+                <li>
+                    Click "Sign Up" and create a free account (no credit card required for trial)
+                </li>
+                <li>
+                    Verify your email address
+                </li>
+                <li>
+                    Go to <strong>Settings</strong> → <strong>API Keys</strong>
+                </li>
+                <li>
+                    Click "Create API Key" and copy the generated key
+                </li>
+                <li>
+                    Paste the key into the Video Generator settings
+                </li>
+            </ol>
+
+            <div class="highlight-box">
+                ✅ <strong>Free Tier Includes:</strong> 5 videos/day, Multiple avatars, Voice options
+            </div>
+
+            <h3>D-ID Avatar Options</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Avatar</th>
+                        <th>Style</th>
+                        <th>Best For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Professional - Sarah</td>
+                        <td>Corporate</td>
+                        <td>Business presentations, training</td>
+                    </tr>
+                    <tr>
+                        <td>Professional - James</td>
+                        <td>Corporate</td>
+                        <td>Executive announcements</td>
+                    </tr>
+                    <tr>
+                        <td>Casual - Emma</td>
+                        <td>Friendly</td>
+                        <td>Social media, tutorials</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="warning-box">
+                ⚠️ <strong>Important:</strong> Keep your API key private. Never share it or commit it to version control.
+            </div>
+        </div>
+
+        <!-- Tavus Setup -->
+        <div class="setup-section">
+            <h2>🎥 Tavus Setup</h2>
+            <p>Tavus specializes in high-quality video generation with customizable avatars and multiple styles.</p>
+
+            <h3>Getting Your Tavus API Key</h3>
+            <ol class="steps">
+                <li>
+                    Visit <a href="https://www.tavus.io" target="_blank">Tavus Platform</a>
+                </li>
+                <li>
+                    Sign up for a free account
+                </li>
+                <li>
+                    Verify your email
+                </li>
+                <li>
+                    Go to <strong>Dashboard</strong> → <strong>API Keys</strong>
+                </li>
+                <li>
+                    Generate a new API key
+                </li>
+                <li>
+                    Copy and paste into the Video Generator settings
+                </li>
+            </ol>
+
+            <div class="highlight-box">
+                ✅ <strong>Free Tier Includes:</strong> 10 videos/month, Premium avatars, HD quality
+            </div>
+
+            <h3>Tavus Features</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Free</th>
+                        <th>Pro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Videos per Month</td>
+                        <td>10</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td>Video Resolution</td>
+                        <td>720p</td>
+                        <td>1080p+</td>
+                    </tr>
+                    <tr>
+                        <td>Custom Avatars</td>
+                        <td>Limited</td>
+                        <td>Full</td>
+                    </tr>
+                    <tr>
+                        <td>API Access</td>
+                        <td>✅</td>
+                        <td>✅</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Comparison -->
+        <div class="setup-section">
+            <h2>⚖️ D-ID vs Tavus</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>D-ID</th>
+                        <th>Tavus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Avatar Realism</td>
+                        <td>⭐⭐⭐⭐⭐</td>
+                        <td>⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>Processing Speed</td>
+                        <td>⭐⭐⭐⭐</td>
+                        <td>⭐⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>Customization</td>
+                        <td>⭐⭐⭐</td>
+                        <td>⭐⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>Free Tier</td>
+                        <td>5 videos/day</td>
+                        <td>10 videos/month</td>
+                    </tr>
+                    <tr>
+                        <td>Best For</td>
+                        <td>Professional videos</td>
+                        <td>Custom brands</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Configuration -->
+        <div class="setup-section">
+            <h2>⚙️ Configuring the Video Generator</h2>
+
+            <h3>Step 1: Open the Application</h3>
+            <p>Open <code>index.html</code> in your web browser. You should see the Video Generator interface.</p>
+
+            <h3>Step 2: Access Settings</h3>
+            <p>When you first load the app, a settings dialog will appear asking for your API keys. If not:</p>
+            <p>Look for a settings icon or menu option to configure your API keys.</p>
+
+            <h3>Step 3: Enter Your Keys</h3>
+            <ol class="steps">
+                <li>Copy your D-ID API key and paste it into the "D-ID API Key" field</li>
+                <li>Copy your Tavus API key and paste it into the "Tavus API Key" field</li>
+                <li>Click "Save Settings"</li>
+            </ol>
+
+            <div class="highlight-box">
+                ✅ Your keys are saved locally in your browser. You won't need to enter them again.
+            </div>
+
+            <h3>Step 4: Test Your Setup</h3>
+            <ol class="steps">
+                <li>Enter a short test message (e.g., "Hello, this is a test video")</li>
+                <li>Select an avatar and voice</li>
+                <li>Choose a video style</li>
+                <li>Click "Generate Video"</li>
+                <li>Wait for processing (usually 1-3 minutes)</li>
+                <li>Preview and download your video!</li>
+            </ol>
+        </div>
+
+        <!-- Troubleshooting -->
+        <div class="setup-section">
+            <h2>🔧 Troubleshooting</h2>
+
+            <h3>API Key Not Working</h3>
+            <div class="error-box">
+                <strong>Problem:</strong> "Invalid API Key" error
+            </div>
+            <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                <li>Double-check that the key was copied completely</li>
+                <li>Remove any extra spaces at the beginning or end</li>
+                <li>Verify the key is still active in your provider's dashboard</li>
+                <li>Try generating a new API key from the provider</li>
+            </ul>
+
+            <h3>Video Generation Timeout</h3>
+            <div class="error-box">
+                <strong>Problem:</strong> Video generation never completes
+            </div>
+            <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                <li>Check your internet connection</li>
+                <li>Try with a shorter text (less than 100 words)</li>
+                <li>Verify the API service is operational</li>
+                <li>Check if you've reached your monthly/daily limit</li>
+            </ul>
+
+            <h3>Video Won't Download</h3>
+            <div class="error-box">
+                <strong>Problem:</strong> Download button doesn't work
+            </div>
+            <ul style="margin-left: 2rem;">
+                <li>Check if your browser is blocking downloads</li>
+                <li>Disable any ad blockers or privacy extensions</li>
+                <li>Try a different browser</li>
+                <li>Clear browser cache and try again</li>
+            </ul>
+        </div>
+
+        <!-- Quick Start -->
+        <div class="setup-section">
+            <h2>🚀 Quick Start Examples</h2>
+
+            <h3>Example 1: Marketing Video</h3>
+            <pre style="background: #f5f5f5; padding: 1rem; border-radius: 4px; overflow-x: auto;">
+Text: "Discover our amazing new product that will transform your life!"
+Avatar: Professional - Sarah
+Voice: Female - Professional
+Style: Marketing
+Background: Gradient
+            </pre>
+
+            <h3>Example 2: Educational Video</h3>
+            <pre style="background: #f5f5f5; padding: 1rem; border-radius: 4px; overflow-x: auto;">
+Text: "Today we'll learn about machine learning and artificial intelligence."
+Avatar: Casual - Emma
+Voice: Female - Friendly
+Style: Educational
+Background: Solid Blue
+            </pre>
+
+            <h3>Example 3: Corporate Announcement</h3>
+            <pre style="background: #f5f5f5; padding: 1rem; border-radius: 4px; overflow-x: auto;">
+Text: "We're excited to announce our Q4 results and future roadmap."
+Avatar: Professional - James
+Voice: Male - Deep
+Style: Professional
+Background: Gradient
+            </pre>
+        </div>
+
+        <!-- Help & Support -->
+        <div class="setup-section">
+            <h2>❓ Need Help?</h2>
+
+            <p>Check out these resources:</p>
+
+            <div class="button-group">
+                <a href="https://docs.d-id.com" target="_blank" style="display: inline-block;">
+                    <button>D-ID Documentation</button>
+                </a>
+                <a href="https://tavus.docs.readme.io" target="_blank" style="display: inline-block;">
+                    <button>Tavus Documentation</button>
+                </a>
+                <a href="README.md" style="display: inline-block;">
+                    <button>Video Generator README</button>
+                </a>
+            </div>
+
+            <h3>Contact Support</h3>
+            <ul style="margin-left: 2rem;">
+                <li><strong>D-ID Support:</strong> <a href="https://www.d-id.com/support" target="_blank">support.d-id.com</a></li>
+                <li><strong>Tavus Support:</strong> <a href="https://tavus.io/support" target="_blank">tavus.io/support</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>🎬 AI Video Generator | Setup Guide v1.0</p>
+        <p>Made with ❤️ for content creators</p>
+    </footer>
+</body>
+</html>

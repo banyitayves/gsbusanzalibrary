@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Video Generator - GS Busanza Library</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🎬 AI Video Generator</h1>
+                <p>Generate professional videos from text using AI</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="grid">
+                <!-- Video Generation Panel -->
+                <div class="panel">
+                    <h2>Create New Video</h2>
+                    
+                    <form id="videoForm" class="form">
+                        <!-- Text Input Section -->
+                        <div class="form-group">
+                            <label for="videoText">Text Content</label>
+                            <textarea 
+                                id="videoText" 
+                                class="textarea" 
+                                placeholder="Enter the text you want to convert to video..." 
+                                rows="6"
+                                required></textarea>
+                            <span class="char-count">0 / 5000</span>
+                        </div>
+
+                        <!-- Video Settings -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="videoDuration">Duration (seconds)</label>
+                                <input 
+                                    type="number" 
+                                    id="videoDuration" 
+                                    class="input" 
+                                    min="10" 
+                                    max="300" 
+                                    value="30"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="videoStyle">Video Style</label>
+                                <select id="videoStyle" class="input" required>
+                                    <option value="professional">Professional</option>
+                                    <option value="casual">Casual</option>
+                                    <option value="educational">Educational</option>
+                                    <option value="marketing">Marketing</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Avatar Selection -->
+                        <div class="form-group">
+                            <label for="avatarType">Avatar Type</label>
+                            <select id="avatarType" class="input" required>
+                                <option value="d-id">D-ID Avatar</option>
+                                <option value="tavus">Tavus Avatar</option>
+                                <option value="custom">Custom Avatar</option>
+                            </select>
+                        </div>
+
+                        <!-- Voice Settings -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="voiceType">Voice</label>
+                                <select id="voiceType" class="input" required>
+                                    <option value="male-1">Male Voice 1</option>
+                                    <option value="male-2">Male Voice 2</option>
+                                    <option value="female-1">Female Voice 1</option>
+                                    <option value="female-2">Female Voice 2</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="voiceSpeed">Voice Speed</label>
+                                <select id="voiceSpeed" class="input">
+                                    <option value="0.8">Slow</option>
+                                    <option value="1.0" selected>Normal</option>
+                                    <option value="1.2">Fast</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Video Background -->
+                        <div class="form-group">
+                            <label for="bgStyle">Background Style</label>
+                            <select id="bgStyle" class="input" required>
+                                <option value="solid-blue">Solid Blue</option>
+                                <option value="solid-white">Solid White</option>
+                                <option value="gradient">Gradient</option>
+                                <option value="custom">Custom</option>
+                            </select>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="generateBtn" class="btn btn-primary">
+                            <span class="btn-text">Generate Video</span>
+                            <span class="btn-loader hidden"></span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Video Preview & History -->
+                <div class="panel">
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="preview">Preview</button>
+                        <button class="tab-btn" data-tab="history">History</button>
+                    </div>
+
+                    <!-- Preview Tab -->
+                    <div id="preview" class="tab-content active">
+                        <div class="video-preview" id="videoPreview">
+                            <div class="preview-placeholder">
+                                <p>Your generated video will appear here</p>
+                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="preview-info" id="previewInfo" style="display: none;">
+                            <div class="info-item">
+                                <span class="label">Status:</span>
+                                <span id="statusBadge" class="badge">Generating...</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Progress:</span>
+                                <div class="progress-bar">
+                                    <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <button id="downloadBtn" class="btn btn-secondary" style="display: none;">
+                                    📥 Download Video
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- History Tab -->
+                    <div id="history" class="tab-content">
+                        <div id="historyList" class="history-list">
+                            <p class="empty-state">No videos generated yet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Status Toast -->
+        <div id="toast" class="toast"></div>
+    </div>
+
+    <!-- Modals -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>API Settings</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="tavisApiKey">Tavus API Key</label>
+                    <input type="password" id="tavisApiKey" class="input" placeholder="Enter your Tavus API key">
+                </div>
+                <div class="form-group">
+                    <label for="didApiKey">D-ID API Key</label>
+                    <input type="password" id="didApiKey" class="input" placeholder="Enter your D-ID API key">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary close-btn">Cancel</button>
+                <button class="btn btn-primary" id="saveSettingsBtn">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
