@@ -1,8 +1,6 @@
 {
-  "buildCommand": "cd student-learning-platform && npm install && npm run build",
-  "devCommand": "cd student-learning-platform && npm run dev",
-  "installCommand": "npm install && cd student-learning-platform && npm install",
-  "outputDirectory": "student-learning-platform/.next",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
   "framework": "nextjs"
 }
 

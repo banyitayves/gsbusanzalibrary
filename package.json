@@ -1,0 +1,12 @@
+{
+  "name": "gs-busanza-library",
+  "version": "1.0.0",
+  "description": "Library Management System",
+  "private": true,
+  "scripts": {
+    "dev": "cd student-learning-platform && npm run dev",
+    "build": "cd student-learning-platform && npm install && npm run build",
+    "start": "cd student-learning-platform && npm run start",
+    "lint": "cd student-learning-platform && npm run lint"
+  }
+}
