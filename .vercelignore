@@ -8,3 +8,18 @@ node_modules
 !README.md
 build_output.txt
 video generator
+app
+pages
+lib
+components
+hooks
+public
+styles
+next.config.js
+package.json
+tsconfig.json
+KIOSK_IMPLEMENTATION.md
+KIOSK_SETUP.md
+BARCODE_SETUP.md
+FEATURES_GUIDE.md
+student-learning-platform-nextjs
