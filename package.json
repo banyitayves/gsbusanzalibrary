@@ -8,5 +8,10 @@
     "build": "cd student-learning-platform && npm install && npm run build",
     "start": "cd student-learning-platform && npm run start",
     "lint": "cd student-learning-platform && npm run lint"
+  },
+  "dependencies": {
+    "next": "^16.2.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
